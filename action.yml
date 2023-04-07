@@ -7,6 +7,10 @@ branding:
   color: 'green'
 
 inputs:
+  target_path:
+    description: "Path of the files to lint.Seperate by space if you what to lint multi-directories"
+    required: false
+    default: "."
   github_token:
     description: 'GITHUB_TOKEN'
     required: true
@@ -39,6 +43,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env:
+    INPUT_TARGET_PATH: ${{ inputs.target_path }}
     INPUT_GITHUG_TOKEN: ${{ inputs.github_token }}
     INPUT_LEVEL: ${{ inputs.level }}
     INPUT_REPORTER: ${{ inputs.reporter }}
